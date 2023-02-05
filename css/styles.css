@@ -11,6 +11,10 @@
   --modal-overlay: #2e2f42;
   --hero-background: #2e2f42;
   --margin-right-img: 24px;
+  --animation: transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1),
+  transition-duration: 250ms, ease-in;
+  2000ms linear, transform 500ms ease-in-out 500ms;
+
 }
 
 body {
@@ -19,6 +23,7 @@ body {
   font-family: "Roboto", sans-serif;
   line-height: 1.5;
   letter-spacing: 0.02em;
+  transition: ease-in;
 }
 ul {
   margin: 0;
@@ -115,6 +120,21 @@ a {
 .list-nav .item:not(:last-child) {
   margin-right: 40px;
 }
+.line-after {
+  position: relative;
+}
+.line-after::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  display: inline-flex;
+  width: 100%;
+  height: 4px;
+  margin: 0;
+  padding: 0;
+  border-radius: 2px;
+  background-color: var(--pressed-state);
+}
 
 .nav-site {
   display: block;
@@ -122,6 +142,8 @@ a {
   padding-bottom: 24px;
   color: var(--dark);
   font-weight: 500;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
 }
 
 .nav-site:hover,
@@ -140,6 +162,8 @@ a {
 .link-tel {
   margin-right: 40px;
   color: inherit;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
 }
 .link-tel:hover,
 .link-tel:focus {
@@ -148,6 +172,8 @@ a {
 
 .link-mail {
   color: inherit;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
 }
 .link-mail:hover,
 .link-mail:focus {
@@ -156,8 +182,10 @@ a {
 
 /* Hero */
 .bg-hero {
-  min-width: 1440px;
+  max-width: 1440px;
   height: 600px;
+  margin-right: auto;
+  margin-left: auto;
   background-color: var(--modal-overlay);
   background-image: linear-gradient(
       to right,
@@ -199,6 +227,9 @@ a {
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.04em;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+
 }
 
 .hero-button:hover,
@@ -291,6 +322,9 @@ a {
   padding: 12px;
   border-radius: 50%;
   fill: var(--light);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+
 }
 .name-team .link:hover,
 .name-team .link:focus {
@@ -314,6 +348,9 @@ a {
   border: 1px solid var(--subtle-text);
   border-radius: 4px;
   fill: var(--subtle-text);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+
 }
 .customers .list-customers:not(:last-child) {
   margin-right: 24px;
@@ -358,15 +395,18 @@ a {
   margin-right: 120px;
 }
 .div-media .titel-media {
+  margin-bottom: 16px;
   color: #ffffff;
   font-size: 16px;
-  margin-bottom: 16px;
 }
 .div-media .link {
   display: inline-flex;
   padding: 8px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.1);
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+
 }
 .div-media .link:hover,
 .div-media .link:focus {
@@ -406,9 +446,13 @@ a {
   font-size: 16px;
   line-height: 1.5;
   letter-spacing: 0.04em;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+
 }
 .btn-portfolio:hover,
 .btn-portfolio:focus {
+  border-color: var(--pressed-state);
   border-radius: 4px;
   background: var(--pressed-state);
   color: #ffffff;
@@ -422,8 +466,33 @@ a {
   row-gap: 48px;
   column-gap: 24px;
 }
+.portfolio .item {
+  position: relative;
+}
+.opacity {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding-top: 40px;
+  padding-right: 32px;
+  padding-left: 32px;
+  background-color: var(--primary-brand);
+  opacity: 0;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+  transform: translate(0px, 300px);
+  
+}
+.item:hover .opacity {
+  opacity: 1;
+  transform: translate(0px, 0px);
+}
+.opacity .text {
+  color: var(--light);
+}
 
 .portfolio .name-card {
+  position: relative;
   padding-top: 32px;
   padding-bottom: 32px;
   padding-left: 16px;
@@ -431,4 +500,62 @@ a {
 
   border-bottom: 1px solid var(--accent);
   border-left: 1px solid var(--accent);
+  background-color: #fff;
+}
+.portfolio .item {
+  overflow: hidden;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 250ms;
+
+}
+.portfolio .item:hover {
+  box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08),
+    0px 1px 1px rgba(46, 47, 66, 0.16), 0px 2px 1px rgba(46, 47, 66, 0.08);
+}
+
+/* Modal */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background-color: rgba(46, 47, 66, 0.4);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 408px;
+  height: 576px;
+  border-radius: 4px;
+  background: #fcfcfc;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
+  transform: translate(-50%, -50%);
+}
+.modal-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background: var(--accent);
+}
+.modal-svg {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  padding: 0;
+  fill: #000000;
+}
+.is-hidden{
+  opacity: 0;
+  visibility: hidden;
+  pointer-events:none
 }
